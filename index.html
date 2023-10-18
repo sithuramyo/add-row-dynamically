@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Rows</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="nameOtherGroup">
+            <div class="form-group" id="Row_1">
+                <div class="row">
+                    <div class="col-sm-4" style="margin-bottom: 13px;">
+                        <input type="text" class="form-control" name="name_other" id="name_other_name_1"
+                            placeholder="Enter Detail Name" />
+                    </div>
+                    <div class="col-sm-4" style="margin-bottom: 13px;">
+                        <input type="text" class="form-control" name="name_other" id="name_other_detail_1"
+                            placeholder="Enter Detail" />
+                    </div>
+                    <div class="col-sm-4" style="margin-bottom: 13px;">
+                        <button type="button" class="btn btn-aia" onclick="addNameOther()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var nameOtherCounter = 1;
+
+        function addNameOther() {
+            nameOtherCounter++;
+            $('<div class="form-group" id="Row_' + nameOtherCounter + '"></div>').appendTo("#nameOtherGroup");
+            $('<div class="row"></div>').appendTo("#Row_" + nameOtherCounter);
+
+            $('<div class="col-sm-4" style="margin-bottom: 13px;"><input type="text" class="form-control" name="name_other" id="name_other_name_' + nameOtherCounter + '" placeholder="Enter Detail Name"/></div>')
+                .appendTo("#Row_" + nameOtherCounter + " .row");
+            $('<div class="col-sm-4" style="margin-bottom: 13px;"><input type="text" class="form-control" name="name_other" id="name_other_detail_' + nameOtherCounter + '" placeholder="Enter Detail"/></div>')
+                .appendTo("#Row_" + nameOtherCounter + " .row");
+            $('<div class="col-sm-4" style="margin-bottom: 13px;"><button class="btn btn-aia" onclick="removeNameOther(' + nameOtherCounter + ', 0)"><i class="fas fa-minus"></i></button></div>')
+                .appendTo("#Row_" + nameOtherCounter + " .row");
+        }
+
+        function removeNameOther(index, id) {
+            var nameOther = $('#Row_' + index + ' #name_other_name_' + index).val();
+
+            $("#Row_" + index).remove();
+            nameOtherCounter--;
+        }
+
+    </script>
+</body>
+
+</html>
